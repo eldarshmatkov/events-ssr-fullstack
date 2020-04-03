@@ -255,7 +255,7 @@
       },
       axiosCall() {
         let preparedObject = qs.stringify({...this.formModel, ...{fromDateMenu: this.fromDateVal}, ...{fromTimeMenu: this.fromTimeVal}});
-        axios.post('/send',
+        axios.post('api/post/event',
                 preparedObject, {
                   headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -287,11 +287,9 @@
     computed: {
       fromDateDisp() {
         return this.fromDateVal;
-        // format/do something with date
       },
       fromTimeDisp() {
         return this.fromTimeVal;
-        // format/do something with date
       },
     },
     mounted () {
