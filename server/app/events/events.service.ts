@@ -9,7 +9,6 @@ export class EventsService {
         var formattedParam = '%' + query + '%';
         var params = [formattedParam];
         db.all(sql, params, (err, rows) => {
-            console.log(rows, 'ROWS!!');
             if (err) {
                 throw new HttpException({error: err.message}, HttpStatus.BAD_REQUEST);
             }
