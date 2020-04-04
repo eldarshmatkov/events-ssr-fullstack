@@ -1,4 +1,5 @@
-export default interface Send {
+export default interface Event {
+    id?: number,
     name: string,
     unit: string,
     eventList: string,
@@ -6,7 +7,7 @@ export default interface Send {
     content: string,
     fromDateMenu: string,
     fromTimeMenu: string,
-    errors: string,
-    formTouched: string,
-    errorMessages: string,
+    errors?: string,
+    formTouched?: string,
+    errorMessages?: string,
 }
