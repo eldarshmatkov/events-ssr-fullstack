@@ -163,7 +163,6 @@
             dialog: false,
             pickedTheme: {},
         }),
-        components: {},
         methods: {
             submit() {
                 if (this.debounceTimer) clearTimeout(this.debounceTimer);
@@ -179,6 +178,7 @@
                 }, 500);
             },
             axiosCall() {
+                this.$store.commit('changeSearchValue', this.formModel.search);
                 axios
                     .get('api/get/event',
                         {
@@ -191,6 +191,7 @@
                         })
                     .then(response => {
                         this.themeResponse = response.data.data;
+                        this.$store.commit('saveSearchResponse', response.data.data);
                         this.setSubmitStatus();
                     })
                     .catch(err => {
@@ -201,6 +202,8 @@
             },
             resetForm() {
                 this.formModel.search = '';
+                this.$store.commit('changeSearchValue', '');
+                this.$store.commit('saveSearchResponse', '');
                 this.formModel.errors = null;
                 this.formModel.formTouched = null;
                 this.submitStatus = null;
@@ -227,6 +230,10 @@
                 },
             }
         },
+        mounted() {
+            this.$store.state.searchValue ? this.formModel.search = this.$store.state.searchValue : null;
+            this.$store.state.searchResponse ? this.themeResponse = this.$store.state.searchResponse : null;
+        }
     }
 </script>
 

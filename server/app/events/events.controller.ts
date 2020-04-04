@@ -9,13 +9,13 @@ export class EventsController {
     }
     // GET event
     @Get('get/event')
-    async getEvent(@Res() res: Response, @Query('search') query:string): Promise<any> {
+    async getEvent(@Res() res: any, @Query('search') query:string): Promise<any> {
         this.eventsService.getEvent(res, query);
     }
 
     //POST event
     @Post('post/event')
-    async sendEvent(@Body() body: Event, @Res() res: Response): Promise<any> {
+    async sendEvent(@Body() body: Event, @Res() res: any): Promise<any> {
         this.eventsService.sendEvent(body, res);
     }
 
